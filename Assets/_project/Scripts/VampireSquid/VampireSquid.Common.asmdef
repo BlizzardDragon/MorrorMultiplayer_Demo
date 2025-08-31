@@ -1,0 +1,24 @@
+{
+    "name": "VampireSquid.Common",
+    "rootNamespace": "",
+    "references": [
+        "FishNet.Runtime",
+        "UniTask",
+        "UniTask.Addressables",
+        "DOTween.Modules",
+        "Unity.TextMeshPro",
+        "Unity.Addressables",
+        "Unity.ResourceManager",
+        "GameKit.Dependencies",
+        "Mirror"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
