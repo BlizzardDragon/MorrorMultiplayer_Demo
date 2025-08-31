@@ -4,25 +4,26 @@ using VampireSquid.Common.CompositeRoot;
 
 namespace _project.Scripts.Game.Entities.Player.Movement
 {
-    public class PlayerRotateToDirectionPresenter : IUpdateLoop
+    public class ClientPlayerMoveInputPresenter : IUpdateLoop
     {
-        private readonly IRotateToDirection _rotateToDirection;
+        private readonly IPlayerMoveInputSender _moveInputSender;
         private readonly IInputService _inputService;
         private readonly IGameManager _gameManager;
 
-        public PlayerRotateToDirectionPresenter(IRotateToDirection rotateToDirection, IInputService inputService,
+        public ClientPlayerMoveInputPresenter(IPlayerMoveInputSender moveInputSender, IInputService inputService,
             IGameManager gameManager)
         {
-            _rotateToDirection = rotateToDirection;
             _inputService = inputService;
+            _moveInputSender = moveInputSender;
             _gameManager = gameManager;
         }
 
-        public void OnUpdate(float deltaTime)
+        public void OnUpdate(float _)
         {
             if (_gameManager.CurrentGameStatus != GameStatus.Play) return;
 
-            _rotateToDirection.Rotate(new Vector2(_inputService.HorizontalAxis, _inputService.VerticalAxis), deltaTime);
+            _moveInputSender.CmdSendInput(
+                new Vector2(_inputService.HorizontalAxisRaw, _inputService.VerticalAxisRaw));
         }
     }
 }

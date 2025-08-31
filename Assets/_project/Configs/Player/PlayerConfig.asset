@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58c60e1b48d4eed9eec85b504646d4f, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 5
+  <MoveSpeed>k__BackingField: 250
   <RotationSpeed>k__BackingField: 10
+  <MessageText>k__BackingField: "\u041F\u0440\u0438\u0432\u0435\u0442 \u043E\u0442 "

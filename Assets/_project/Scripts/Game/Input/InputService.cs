@@ -6,23 +6,23 @@ namespace _project.Scripts.Game.Input
 {
     public interface IInputService
     {
-        float HorizontalAxis { get; }
-        float VerticalAxis { get; }
+        float HorizontalAxisRaw { get; }
+        float VerticalAxisRaw { get; }
 
         event Action SpaceDown;
     }
 
     public class InputService : IInputService, IUpdateLoop
     {
-        public float HorizontalAxis { get; private set; }
-        public float VerticalAxis { get; private set; }
+        public float HorizontalAxisRaw { get; private set; }
+        public float VerticalAxisRaw { get; private set; }
         
         public event Action SpaceDown;
 
         public void OnUpdate(float deltaTime)
         {
-            HorizontalAxis = UnityEngine.Input.GetAxis("Horizontal");
-            VerticalAxis = UnityEngine.Input.GetAxis("Vertical");
+            HorizontalAxisRaw = UnityEngine.Input.GetAxisRaw("Horizontal");
+            VerticalAxisRaw = UnityEngine.Input.GetAxisRaw("Vertical");
             
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {

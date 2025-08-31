@@ -5,24 +5,24 @@ namespace _project.Scripts.Game.Entities.Player.Movement
 {
     public class PlayerRotateToDirection : IRotateToDirection
     {
-        private readonly Transform _playerSource;
+        private readonly Rigidbody _rigidbody;
         private readonly PlayerConfig _config;
 
-        public PlayerRotateToDirection(Transform playerSource, PlayerConfig config)
+        public PlayerRotateToDirection(Rigidbody rigidbody, PlayerConfig config)
         {
-            _playerSource = playerSource;
+            _rigidbody = rigidbody;
             _config = config;
         }
 
-        public void Rotate(Vector2 direction, float deltaTime)
+        public void Rotate(Vector2 direction)
         {
             if (direction == Vector2.zero) return;
 
             var targetRotation =
                 Quaternion.LookRotation(new Vector3(direction.x, 0, direction.y), Vector3.up);
 
-            _playerSource.rotation =
-                Quaternion.Lerp(_playerSource.rotation, targetRotation, _config.RotationSpeed * deltaTime);
+            var rotation = Quaternion.Lerp(_rigidbody.rotation, targetRotation, _config.RotationSpeed);
+            _rigidbody.MoveRotation(rotation);
         }
     }
 }

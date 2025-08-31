@@ -5,19 +5,19 @@ namespace _project.Scripts.Game.Entities.Player.Movement
 {
     public class PlayerMover : IMover
     {
-        private readonly Transform _playerSource;
+        private readonly Rigidbody _rigidbody;
         private readonly PlayerConfig _config;
-        
-        public PlayerMover(Transform playerSource, PlayerConfig config)
+
+        public PlayerMover(Rigidbody rigidbody, PlayerConfig config)
         {
-            _playerSource = playerSource;
+            _rigidbody = rigidbody;
             _config = config;
         }
 
-        public void Move(Vector2 direction, float deltaTime)
+        public void Move(Vector2 direction)
         {
-            var speed = _config.MoveSpeed * deltaTime;
-            _playerSource.Translate(new Vector3(direction.x * speed, 0, direction.y * speed), Space.World);
+            var speed = _config.MoveSpeed;
+            _rigidbody.linearVelocity = new Vector3(direction.x * speed, 0, direction.y * speed);
         }
     }
 }

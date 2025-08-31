@@ -31,7 +31,7 @@ namespace VampireSquid.Common.Connections
 
             if (isLocalPlayer)
             {
-                CmdUpdateInfo(id, NetworkServer.active && isClient); // host = server + client
+                CmdUpdateInfo(id, NetworkServer.active && isClient);
             }
 
             gameObject.name = id;
