@@ -34,7 +34,7 @@ namespace _project.Scripts.Game.Entities.Player.Movement
 
         public void OnFixedUpdate(float deltaTime)
         {
-            _rotateToDirection.Rotate(_currentDirection);
+            _rotateToDirection.Rotate(_currentDirection.normalized);
         }
     }
 }

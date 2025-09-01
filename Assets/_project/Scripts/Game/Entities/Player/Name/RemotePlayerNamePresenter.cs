@@ -1,9 +1,11 @@
+using System;
 using _project.Scripts.Game.Entities.Player.View;
 using Unity.VisualScripting;
+using UnityEngine;
 
 namespace _project.Scripts.Game.Entities.Player.Name
 {
-    public class RemotePlayerNamePresenter : IInitializable 
+    public class RemotePlayerNamePresenter : IInitializable, IDisposable
     {
         private readonly IPlayerIdentity _identity;
         private readonly PlayerNameView _nameView;
@@ -32,6 +34,11 @@ namespace _project.Scripts.Game.Entities.Player.Name
         private void OnNameChanged(string name)
         {
             _nameView.RenderName(name);
+        }
+
+        public void Dispose()
+        {
+            GameObject.Destroy(_nameView.gameObject);
         }
     }
 }

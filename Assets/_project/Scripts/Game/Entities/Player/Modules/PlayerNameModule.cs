@@ -40,6 +40,7 @@ namespace _project.Scripts.Game.Entities.Player.Modules
         {
             _nameFollower.Initialize();
             _remotePlayerNamePresenter?.Initialize();
+            
             _clientPlayerNamePresenter?.OnEnable();
             _remotePlayerNamePresenter?.OnEnable();
         }
@@ -48,6 +49,9 @@ namespace _project.Scripts.Game.Entities.Player.Modules
         {
             _clientPlayerNamePresenter?.OnDisable();
             _remotePlayerNamePresenter?.OnDisable();
+            
+            _clientPlayerNamePresenter?.Dispose();
+            _remotePlayerNamePresenter?.Dispose();
         }
     }
 }
