@@ -38,7 +38,10 @@ namespace _project.Scripts.Game.Entities.Player.Name
 
         public void Dispose()
         {
-            GameObject.Destroy(_nameView.gameObject);
+            if (_nameView)
+            {
+                GameObject.Destroy(_nameView.gameObject);
+            }
         }
     }
 }

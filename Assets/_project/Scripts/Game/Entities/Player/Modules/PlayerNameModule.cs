@@ -8,6 +8,7 @@ namespace _project.Scripts.Game.Entities.Player.Modules
 {
     public class PlayerNameModule : EntityModuleCompositeRootBase
     {
+        [SerializeField] private Transform _followTarget;
         [SerializeField] private PlayerNameSync _nameSync;
         [SerializeField] private PlayerNameView _nameView;
 
@@ -17,11 +18,9 @@ namespace _project.Scripts.Game.Entities.Player.Modules
 
         public override void Create(IEntity entity)
         {
-            var transformSource = entity.GetModule<Transform>();
-
             entity.AddModule<IPlayerNameSync>(_nameSync);
 
-            _nameFollower = new PlayerNameFollower(transformSource, _nameView.transform);
+            _nameFollower = new PlayerNameFollower(_followTarget, _nameView.transform);
 
             if (entity.Presence.IsLocal())
             {
