@@ -6,15 +6,15 @@ namespace _project.Scripts.Game.Entities.Player.Message
     public class PlayerMessagePresenter
     {
         private readonly IPlayerMessageSender _messageSender;
-        private readonly IPlayerIdentity _playerIdentity;
+        private readonly IPlayerNameSync _playerNameSync;
         private readonly IInputService _inputService;
         private readonly PlayerConfig _config;
 
-        public PlayerMessagePresenter(IPlayerMessageSender messageSender, IPlayerIdentity playerIdentity,
+        public PlayerMessagePresenter(IPlayerMessageSender messageSender, IPlayerNameSync playerNameSync,
             IInputService inputService, PlayerConfig config)
         {
             _messageSender = messageSender;
-            _playerIdentity = playerIdentity;
+            _playerNameSync = playerNameSync;
             _inputService = inputService;
             _config = config;
         }
@@ -31,7 +31,7 @@ namespace _project.Scripts.Game.Entities.Player.Message
 
         private void OnSpaceDown()
         {
-            _messageSender.CmdSendMessage(_config.MessageText + _playerIdentity.Name);
+            _messageSender.CmdSendMessage(_config.MessageText + _playerNameSync.Name);
         }
     }
 }

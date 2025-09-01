@@ -18,7 +18,7 @@ namespace _project.Scripts.Game.Entities.Player.Modules
             if (entity.Presence.IsLocal())
             {
                 var inputService = GetGlobal<IInputService>();
-                var playerIdentity = entity.GetModule<IPlayerIdentity>();
+                var playerIdentity = entity.GetModule<IPlayerNameSync>();
                 var config = entity.GetModule<PlayerConfig>();
 
                 _messagePresenter = new PlayerMessagePresenter(_messageSender, playerIdentity, inputService, config);

@@ -18,7 +18,6 @@ namespace _project.Scripts.Game.Entities.Player.Modules
         public override void Create(IEntity entity)
         {
             var transformSource = entity.GetModule<Transform>();
-            var identity = entity.GetModule<IPlayerIdentity>();
 
             entity.AddModule<IPlayerNameSync>(_nameSync);
 
@@ -26,11 +25,11 @@ namespace _project.Scripts.Game.Entities.Player.Modules
 
             if (entity.Presence.IsLocal())
             {
-                _clientPlayerNamePresenter = new ClientPlayerNamePresenter(identity, _nameView);
+                _clientPlayerNamePresenter = new ClientPlayerNamePresenter(_nameSync, _nameView);
             }
             else if (entity.Presence.IsRemote())
             {
-                _remotePlayerNamePresenter = new RemotePlayerNamePresenter(identity, _nameView);
+                _remotePlayerNamePresenter = new RemotePlayerNamePresenter(_nameSync, _nameView);
             }
 
             AddUpdatable(_nameFollower);

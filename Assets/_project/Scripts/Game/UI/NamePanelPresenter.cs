@@ -1,7 +1,6 @@
 using System.Threading;
-using _project.Scripts.Game.Configs;
 using _project.Scripts.Game.Configs.Player;
-using _project.Scripts.Game.Entities.Player.Name;
+using _project.Scripts.Game.Entities.Player;
 using Cysharp.Threading.Tasks;
 using Mirror;
 

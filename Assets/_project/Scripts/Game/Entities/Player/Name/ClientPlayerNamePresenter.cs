@@ -6,23 +6,23 @@ namespace _project.Scripts.Game.Entities.Player.Name
 {
     public class ClientPlayerNamePresenter : IDisposable
     {
-        private readonly IPlayerIdentity _identity;
+        private readonly IPlayerNameSync _nameSync;
         private readonly PlayerNameView _nameView;
 
-        public ClientPlayerNamePresenter(IPlayerIdentity identity, PlayerNameView nameView)
+        public ClientPlayerNamePresenter(IPlayerNameSync nameSync, PlayerNameView nameView)
         {
-            _identity = identity;
+            _nameSync = nameSync;
             _nameView = nameView;
         } 
 
         public void OnEnable()
         {
-            _identity.NameChanged += OnNameChanged;
+            _nameSync.NameChanged += OnNameChanged;
         }
 
         public void OnDisable()
         {
-            _identity.NameChanged -= OnNameChanged;
+            _nameSync.NameChanged -= OnNameChanged;
         }
 
         private void OnNameChanged(string name)

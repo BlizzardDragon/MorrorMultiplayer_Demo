@@ -3,23 +3,24 @@ using Mirror;
 
 namespace _project.Scripts.Game.Entities.Player
 {
-    public interface IPlayerIdentity
+    public interface IPlayerNameSync
     {
         string Name { get; }
 
         event Action<string> NameChanged;
 
-        void SetName(string name);
+        void CmdSetName(string name);
     }
 
-    public class PlayerIdentity : NetworkBehaviour, IPlayerIdentity
+    public class PlayerNameSync : NetworkBehaviour, IPlayerNameSync
     {
         [field: SyncVar(hook = nameof(OnNameChanged))]
         public string Name { get; private set; }
 
         public event Action<string> NameChanged;
-
-        public void SetName(string name)
+        
+        [Command]
+        public void CmdSetName(string name)
         {
             Name = name;
         }
