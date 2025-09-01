@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 250
-  <RotationSpeed>k__BackingField: 10
+  <RotationSpeed>k__BackingField: 0.25
   <MessageText>k__BackingField: "\u041F\u0440\u0438\u0432\u0435\u0442 \u043E\u0442 "

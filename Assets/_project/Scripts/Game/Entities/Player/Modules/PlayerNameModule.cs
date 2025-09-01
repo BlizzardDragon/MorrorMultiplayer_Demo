@@ -2,6 +2,7 @@ using _project.Scripts.Game.Entities.Player.Name;
 using _project.Scripts.Game.Entities.Player.View;
 using Entity.Core;
 using UnityEngine;
+using VampireSquid.Common.Connections;
 
 namespace _project.Scripts.Game.Entities.Player.Modules
 {
@@ -10,8 +11,9 @@ namespace _project.Scripts.Game.Entities.Player.Modules
         [SerializeField] private PlayerNameSync _nameSync;
         [SerializeField] private PlayerNameView _nameView;
 
-        private PlayerNamePresenter _namePresenter;
         private PlayerNameFollower _nameFollower;
+        private ClientPlayerNamePresenter _clientPlayerNamePresenter;
+        private RemotePlayerNamePresenter _remotePlayerNamePresenter;
 
         public override void Create(IEntity entity)
         {
@@ -19,9 +21,17 @@ namespace _project.Scripts.Game.Entities.Player.Modules
             var identity = entity.GetModule<IPlayerIdentity>();
 
             entity.AddModule<IPlayerNameSync>(_nameSync);
-            
-            _namePresenter = new PlayerNamePresenter(identity, _nameView);
+
             _nameFollower = new PlayerNameFollower(transformSource, _nameView.transform);
+
+            if (entity.Presence.IsLocal())
+            {
+                _clientPlayerNamePresenter = new ClientPlayerNamePresenter(identity, _nameView);
+            }
+            else if (entity.Presence.IsRemote())
+            {
+                _remotePlayerNamePresenter = new RemotePlayerNamePresenter(identity, _nameView);
+            }
 
             AddUpdatable(_nameFollower);
         }
@@ -29,12 +39,15 @@ namespace _project.Scripts.Game.Entities.Player.Modules
         public override void Initialize()
         {
             _nameFollower.Initialize();
-            _namePresenter.OnEnable();
+            _remotePlayerNamePresenter?.Initialize();
+            _clientPlayerNamePresenter?.OnEnable();
+            _remotePlayerNamePresenter?.OnEnable();
         }
 
         protected override void OnBeforeDestroy()
         {
-            _namePresenter.OnDisable();
+            _clientPlayerNamePresenter?.OnDisable();
+            _remotePlayerNamePresenter?.OnDisable();
         }
     }
 }

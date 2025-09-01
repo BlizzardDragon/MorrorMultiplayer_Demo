@@ -2,12 +2,12 @@ using _project.Scripts.Game.Entities.Player.View;
 
 namespace _project.Scripts.Game.Entities.Player.Name
 {
-    public class PlayerNamePresenter
+    public class ClientPlayerNamePresenter
     {
         private readonly IPlayerIdentity _identity;
         private readonly PlayerNameView _nameView;
 
-        public PlayerNamePresenter(IPlayerIdentity identity, PlayerNameView nameView)
+        public ClientPlayerNamePresenter(IPlayerIdentity identity, PlayerNameView nameView)
         {
             _identity = identity;
             _nameView = nameView;
