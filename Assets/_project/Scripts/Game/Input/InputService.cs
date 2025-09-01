@@ -9,7 +9,8 @@ namespace _project.Scripts.Game.Input
         float HorizontalAxisRaw { get; }
         float VerticalAxisRaw { get; }
 
-        event Action SpaceDown;
+        event Action SpaceKeyDown;
+        event Action FKeyDown;
     }
 
     public class InputService : IInputService, IUpdateLoop
@@ -17,7 +18,8 @@ namespace _project.Scripts.Game.Input
         public float HorizontalAxisRaw { get; private set; }
         public float VerticalAxisRaw { get; private set; }
         
-        public event Action SpaceDown;
+        public event Action SpaceKeyDown;
+        public event Action FKeyDown;
 
         public void OnUpdate(float deltaTime)
         {
@@ -26,7 +28,12 @@ namespace _project.Scripts.Game.Input
             
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
-                SpaceDown?.Invoke();
+                SpaceKeyDown?.Invoke();
+            }
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.F))
+            {
+                FKeyDown?.Invoke();
             }
         }
     }

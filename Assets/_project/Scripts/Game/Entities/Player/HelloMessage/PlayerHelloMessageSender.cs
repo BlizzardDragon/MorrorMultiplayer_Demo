@@ -1,14 +1,14 @@
 using Mirror;
 using UnityEngine;
 
-namespace _project.Scripts.Game.Entities.Player.Message
+namespace _project.Scripts.Game.Entities.Player.HelloMessage
 {
-    public interface IPlayerMessageSender
+    public interface IPlayerHelloMessageSender
     {
         void CmdSendMessage(string message);
     }
 
-    public class PlayerMessageSender : NetworkBehaviour, IPlayerMessageSender
+    public class PlayerHelloMessageSender : NetworkBehaviour, IPlayerHelloMessageSender
     {
         [Command]
         public void CmdSendMessage(string message)

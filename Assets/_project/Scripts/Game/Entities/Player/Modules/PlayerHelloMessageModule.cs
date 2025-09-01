@@ -1,5 +1,5 @@
 using _project.Scripts.Game.Configs.Player;
-using _project.Scripts.Game.Entities.Player.Message;
+using _project.Scripts.Game.Entities.Player.HelloMessage;
 using _project.Scripts.Game.Input;
 using Entity.Core;
 using UnityEngine;
@@ -7,11 +7,11 @@ using VampireSquid.Common.Connections;
 
 namespace _project.Scripts.Game.Entities.Player.Modules
 {
-    public class PlayerMessageModule : EntityModuleCompositeRootBase
+    public class PlayerHelloMessageModule : EntityModuleCompositeRootBase
     {
-        [SerializeField] private PlayerMessageSender _messageSender;
+        [SerializeField] private PlayerHelloMessageSender _helloMessageSender;
 
-        private PlayerMessagePresenter _messagePresenter;
+        private PlayerHelloMessagePresenter _helloMessagePresenter;
 
         public override void Create(IEntity entity)
         {
@@ -21,18 +21,19 @@ namespace _project.Scripts.Game.Entities.Player.Modules
                 var playerIdentity = entity.GetModule<IPlayerNameSync>();
                 var config = entity.GetModule<PlayerConfig>();
 
-                _messagePresenter = new PlayerMessagePresenter(_messageSender, playerIdentity, inputService, config);
+                _helloMessagePresenter =
+                    new PlayerHelloMessagePresenter(_helloMessageSender, playerIdentity, inputService, config);
             }
         }
 
         public override void Initialize()
         {
-            _messagePresenter?.OnEnable();
+            _helloMessagePresenter?.OnEnable();
         }
 
         protected override void OnBeforeDestroy()
         {
-            _messagePresenter?.OnDisable();
+            _helloMessagePresenter?.OnDisable();
         }
     }
 }
