@@ -62,5 +62,4 @@
 ---
 
 ## 📸 Скриншоты
-![Screenshot](Assets/Screenshots/Screenshot.png)
-
+<img src="Assets\Screenshots\Screenshot.jpg" width="300">
